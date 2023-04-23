@@ -433,6 +433,10 @@ static lv_res_t event_send_core(lv_event_t * e)
         if(indev_act->driver->feedback_cb) indev_act->driver->feedback_cb(indev_act->driver, e->code);
         if(e->stop_processing) return LV_RES_OK;
         if(e->deleted) return LV_RES_INV;
+        else { 
+            LV_LOG_WARN("Feedback callback is not set on the input device");
+            return;
+        }
     }
 
     lv_res_t res = LV_RES_OK;
