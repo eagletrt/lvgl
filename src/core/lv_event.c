@@ -406,7 +406,7 @@ static lv_res_t event_send_core(lv_event_t * e)
 
     /*Call the input device's feedback callback if set*/
     lv_indev_t * indev_act = lv_indev_get_act();
-    if(indev_act) {
+    if(indev_act && e->code == LV_EVENT_KEY) {
         if(indev_act->driver->feedback_cb) indev_act->driver->feedback_cb(indev_act->driver, e->code);
     }
 
