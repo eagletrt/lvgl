@@ -179,7 +179,9 @@ void lv_draw_rect(lv_layer_t * layer, const lv_draw_rect_dsc_t * dsc, const lv_a
         bg_dsc->base = dsc->base;
         bg_dsc->base.dsc_size = sizeof(lv_draw_fill_dsc_t);
         bg_dsc->radius = dsc->radius;
-        bg_dsc->color = dsc->bg_color;
+        bg_dsc->color.blue = dsc->bg_color.blue;
+        bg_dsc->color.green = dsc->bg_color.green;
+        bg_dsc->color.red = dsc->bg_color.red;
         bg_dsc->grad = dsc->bg_grad;
         bg_dsc->opa = dsc->bg_opa;
         t->type = LV_DRAW_TASK_TYPE_FILL;
