@@ -53,7 +53,16 @@ void lv_draw_sw_fill(lv_draw_unit_t * draw_unit, const lv_draw_fill_dsc_t * dsc,
     if(!_lv_area_intersect(&clipped_coords, &bg_coords, draw_unit->clip_area)) return;
 
     lv_grad_dir_t grad_dir = dsc->grad.dir;
-    lv_color_t bg_color    = grad_dir == LV_GRAD_DIR_NONE ? dsc->color : dsc->grad.stops[0].color;
+    lv_color_t bg_color;
+    if (grad_dir == LV_GRAD_DIR_NONE) {
+        bg_color.blue = dsc->color.blue;
+        bg_color.red = dsc->color.red;
+        bg_color.green = dsc->color.green;
+    } else {
+        bg_color.blue = dsc->grad.stops[0].color.blue;
+        bg_color.red = dsc->grad.stops[0].color.red;
+        bg_color.green = dsc->grad.stops[0].color.green;
+    }
 
     lv_draw_sw_blend_dsc_t blend_dsc = {0};
     blend_dsc.color = bg_color;
